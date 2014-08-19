@@ -10,3 +10,16 @@ Install:
     $ pip install flask soco
     $ cd SonosPlayUri
     $ python socoplayer.py
+
+
+Surf to:
+
+    http://localhost:5001/
+
+Option:
+
+    http://localhost:5001/?programid=2901
+
+where ``progamid``is SR program id
+
+
