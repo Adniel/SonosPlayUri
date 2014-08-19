@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+  {% for player in players %}
+    <li>{{ player.player_name }} <a href="/set_volume?direction=down&ip={{ player.ip_address }}"><i class="fa fa-volume-down"></i></a> ({{ player.volume }}) <a href="/set_volume?direction=up&ip={{ player.ip_address }}"><i class="fa fa-volume-up"></i></a> <form action="/play_uri?ip={{ player.ip_address }}" method="POST"><input name="uri" width=200/><input type="submit" value="Play" /></form></li>
+  {% else %}
+    <li><em>Unbelievable.  No players in this network...</em></li>
+  {% endfor %}
+  </ul>
+  <hr />
+  <ul class=entries>
+  {% for pod in pods %}
+  	<li>{{ pod.title }} <a href="{{ pod.url }}"><i class="fa fa-link"></i></a></li>
+  {% else %}
+    <li><em>No programid given or no result returned</em></li>
+  {% endfor %}
+  </ul>
+
+  {% if pagination %}
+	  {% if pagination.previouspage %}
+	  <a href="/?programid={{ programid }}&page={{ pages.previouspage }}">&lt;</a>
+	  {% endif %}
+
+	  <span>{{ pagination.page}}</span> of <span>{{ pagination.totalpages}}</span>
+
+	  {% if pagination.nextpage %}
+	  <a href="/?programid={{ programid }}&page={{ pages.nextpage }}">&gt;</a>
+	  {% endif %}
+  {% endif %}
+
+{% endblock %}
